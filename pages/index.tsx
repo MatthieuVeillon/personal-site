@@ -33,12 +33,18 @@ const PostsPage: FC<PostPageProps> = ({ posts }) => {
         ))}
       </ul>
     </>
+
+    // <>
+    //   {posts.map((post) => (
+    //     <Post key={post.link} post={post} />
+    //   ))}
+    // </>
   );
 };
 
 export default PostsPage;
 
-// Why do I need a getStaticProps here ? (because it needs to be executed server side
+//Why do I need a getStaticProps here ? (because it needs to be executed server side
 export function getStaticProps() {
   const POSTS_PATH = path.join(process.cwd(), "posts");
   const filesPath = fs
