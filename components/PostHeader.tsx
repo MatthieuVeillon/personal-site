@@ -1,14 +1,17 @@
 import React, { FC } from "react";
+import { Meta } from "./Layout";
 
 type HeadPostProps = {
-  meta: { [p: string]: any };
+  meta: Meta;
 };
 
 const PostHeader: FC<HeadPostProps> = ({ meta }) => {
   return (
     <>
-      <h1>{meta.title}</h1>
-      <div className="details">
+      <h1 className="text-lg font-semibold mt-md text-green-400">
+        {meta.title}
+      </h1>
+      <div className="text-gray-500 flex space-x-4 mb-lg">
         <span>{meta.date}</span>
         <span role="img" aria-label="one coffee">
           ☕ {meta.readTime + " min read"}

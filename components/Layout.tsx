@@ -2,14 +2,20 @@ import React, { FC, ReactNode } from "react";
 import Header from "./Header";
 import PostHeader from "./PostHeader";
 
-type LayoutProps = { meta: { [p: string]: any }; content: ReactNode };
+type LayoutProps = { meta: Meta; content: ReactNode };
+
+export type Meta = {
+  title: string;
+  date: Date;
+  readTime: number;
+};
 
 const Layout: FC<LayoutProps> = ({ meta, content }) => {
   return (
-    <div className="mx-auto bg-red-100 max-w-xl">
+    <div className="container">
       <Header />
       <PostHeader meta={meta} />
-      <main>{content}</main>
+      <main className="prose">{content}</main>
     </div>
   );
 };
