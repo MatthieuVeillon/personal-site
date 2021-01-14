@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { FC } from "react";
 import Link from "next/link";
+import Intro from "../components/Intro";
 
 type Post = {
   content: string;
@@ -17,7 +18,7 @@ type PostPageProps = {
 const PostsPage: FC<PostPageProps> = ({ posts }) => {
   return (
     <>
-      My Blog Posts
+      <Intro />
       <ul>
         {posts.map((post) => (
           <li key={post.filePath}>

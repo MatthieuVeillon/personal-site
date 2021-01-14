@@ -10,14 +10,14 @@ export type Meta = {
   readTime: number;
 };
 
-const Layout: FC<LayoutProps> = ({ meta, content }) => {
+const PostLayout: FC<LayoutProps> = ({ meta, content }) => {
   return (
-    <div className="container">
+    <>
       <Header />
       <PostHeader meta={meta} />
       <main className="prose">{content}</main>
-    </div>
+    </>
   );
 };
 
-export default Layout;
+export default PostLayout;

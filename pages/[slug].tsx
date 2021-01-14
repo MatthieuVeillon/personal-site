@@ -5,14 +5,14 @@ import * as fs from "fs";
 import renderToString from "next-mdx-remote/render-to-string";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 import hydrate from "next-mdx-remote/hydrate";
-import Layout from "../components/Layout";
+import PostLayout, { Meta } from "../components/PostLayout";
 
-type PostPageProps = { meta: { [p: string]: any }; source: string };
+type PostPageProps = { meta: Meta; source: string };
 
 const PostPage: FC<PostPageProps> = ({ meta, source }) => {
   const content = hydrate(source);
 
-  return <Layout content={content} meta={meta} />;
+  return <PostLayout content={content} meta={meta} />;
 };
 
 export default PostPage;
