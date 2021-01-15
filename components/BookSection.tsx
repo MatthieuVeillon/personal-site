@@ -1,10 +1,13 @@
 import React, { FC } from "react";
-import Link from "next/link";
 
 type BookSectionProps = {};
 
 const BookSection: FC<BookSectionProps> = ({}) => {
-  return <Link href={`/bookshelf`}>Bookshelf</Link>;
+  return (
+    <a target="_blank" rel="noreferrer" href={`/bookshelf`}>
+      Bookshelf
+    </a>
+  );
 };
 
 export default BookSection;
