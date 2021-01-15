@@ -19,7 +19,7 @@ const Intro: FC<IntroProps> = ({}) => {
       <div>
         Hey I'm Matt, a web dev passionate about learning and growing. Here is
         my digital garden where I gather my learnings, thoughts and things I
-        want to keep around digitally{" "}
+        want to keep around{" "}
       </div>
     </div>
   );
