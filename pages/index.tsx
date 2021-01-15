@@ -2,9 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { FC } from "react";
-import Link from "next/link";
+import Intro from "../components/Intro";
+import BlogSection from "../components/BlogSection";
+import BookSection from "../components/BookSection";
 
-type Post = {
+export type Post = {
   content: string;
   data: { [p: string]: any };
   filePath: string;
@@ -14,31 +16,18 @@ type PostPageProps = {
   posts: Post[];
 };
 
-const PostsPage: FC<PostPageProps> = ({ posts }) => {
+const HomePage: FC<PostPageProps> = ({ posts }) => {
   return (
-    <>
-      My Blog Posts
-      <ul>
-        {posts.map((post) => (
-          <li key={post.filePath}>
-            <div className="p-6 max-w-sm rounded-xl shadow-md">
-              <Link
-                as={`/${post.filePath.replace(/\.mdx?$/, "")}`}
-                href={`/[slug]`}
-              >
-                <a>{post.data.title}</a>
-              </Link>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="flex flex-col space-y-10">
+      <Intro />
+      <BlogSection posts={posts} />
+      <BookSection />
+    </div>
   );
 };
 
-export default PostsPage;
+export default HomePage;
 
-// Why do I need a getStaticProps here ? (because it needs to be executed server side
 export function getStaticProps() {
   const POSTS_PATH = path.join(process.cwd(), "posts");
   const filesPath = fs
