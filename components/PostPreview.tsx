@@ -16,7 +16,11 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
           </a>
         </Link>
       </div>
-      <p className="truncate ...">{post.content}</p>
+      {post.data.description ? (
+        <p>{post.data.description}</p>
+      ) : (
+        <p className="truncate ...">{post.data.description}</p>
+      )}
     </li>
   );
 };

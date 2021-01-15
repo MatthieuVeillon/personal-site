@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { FC } from "react";
 import Intro from "../components/Intro";
 import BlogSection from "../components/BlogSection";
+import BookSection from "../components/BookSection";
 
 export type Post = {
   content: string;
@@ -20,6 +21,7 @@ const HomePage: FC<PostPageProps> = ({ posts }) => {
     <div className="flex flex-col space-y-10">
       <Intro />
       <BlogSection posts={posts} />
+      <BookSection />
     </div>
   );
 };
