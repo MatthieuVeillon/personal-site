@@ -21,18 +21,11 @@ const HomePage: FC<PostPageProps> = ({ posts }) => {
       <Intro />
       <BlogSection posts={posts} />
     </div>
-
-    // <>
-    //   {posts.map((post) => (
-    //     <Post key={post.link} post={post} />
-    //   ))}
-    // </>
   );
 };
 
 export default HomePage;
 
-//Why do I need a getStaticProps here ? (because it needs to be executed server side
 export function getStaticProps() {
   const POSTS_PATH = path.join(process.cwd(), "posts");
   const filesPath = fs
