@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { Post } from "../pages";
+import ArrowLink from "./ArrowLink";
 
 type PostPreviewProps = {
   post: Post;
@@ -21,6 +22,13 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
       ) : (
         <p className="truncate ...">{post.data.description}</p>
       )}
+      <div className="mt-sm">
+        <ArrowLink
+          as={`/${post.filePath.replace(/\.mdx?$/, "")}`}
+          href={`/[slug]`}
+          label="read"
+        />
+      </div>
     </li>
   );
 };

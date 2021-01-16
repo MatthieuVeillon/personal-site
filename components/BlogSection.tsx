@@ -12,7 +12,7 @@ const BlogSection: FC<BlogSectionProps> = ({ posts }) => {
       <h2 className="text-3xl mb-sm">Blog Posts</h2>
       <ul className="mx-auto flex flex-col space-y-2">
         {posts.map((post) => (
-          <PostPreview post={post} />
+          <PostPreview key={post.data.title} post={post} />
         ))}
       </ul>
     </>
