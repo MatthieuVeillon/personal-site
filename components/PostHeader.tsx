@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { Meta } from "./PostLayout";
+import { PostMetaData } from "./PostLayout";
 
 type HeadPostProps = {
-  meta: Meta;
+  meta: PostMetaData;
 };
 
 const PostHeader: FC<HeadPostProps> = ({ meta }) => {

@@ -5,9 +5,9 @@ import * as fs from "fs";
 import renderToString from "next-mdx-remote/render-to-string";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 import hydrate from "next-mdx-remote/hydrate";
-import PostLayout, { Meta } from "../components/PostLayout";
+import PostLayout, { PostMetaData } from "../components/PostLayout";
 
-type PostPageProps = { meta: Meta; source: string };
+type PostPageProps = { meta: PostMetaData; source: string };
 
 const PostPage: FC<PostPageProps> = ({ meta, source }) => {
   const content = hydrate(source);

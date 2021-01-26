@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 
 const BASE_URL = "https://www.matthieuveillon.com";
 
-type LayoutProps = { meta: Meta; content: ReactNode };
+type LayoutProps = { meta: PostMetaData; content: ReactNode };
 
-export type Meta = {
+export type PostMetaData = {
   title: string;
   date: Date;
   description: string;
