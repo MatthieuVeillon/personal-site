@@ -3,10 +3,11 @@ const withMDX = require("@next/mdx")({
 });
 module.exports = withMDX({
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/bookshelf",
+        permanent: true,
         destination:
           "https://www.notion.so/a0c42e8334cd4f699b76bfa88ad34d5f?v=b91891ed623d419f9a55dcac164ebcd0",
       },

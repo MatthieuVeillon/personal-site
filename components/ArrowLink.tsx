@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import Link from "next/link";
 
-type ArrowLinkProps = {
-  as?: string;
-  href: string;
-  label: string;
-  target?: string;
-};
+interface ArrowLinkProps {
+    as?: string;
+    href: string;
+    label: string;
+    target?: string;
+}
 
 const ArrowLink: FC<ArrowLinkProps> = ({ as, href, label, target }) => {
   return (
