@@ -1,8 +1,40 @@
 ---
-title: remove git stale branch
-description: Always a pain to remove git branches
+title: Delete local git branches when remote branch has been removed
 ---
 
-I switched career at 33 through a bootcamp. A lot of us do it at various ages, some younger, some later on. I globally really enjoyed the ride and learning experience.
+I always look up on stackOverflow for this one. Most of the company I've worked in use github or some similar software where the remote feature branch is automatically deleted when you merge your PR.
 
-During the bootcamp we were exposed to the concept of [growth vs fixed mindset](https://fs.blog/2015/03/carol-dweck-mindset/), at this stage the concept seemed to click - it was feeling comfortable, I was confident in my ability to learn and proud of my capacity to pivot.
+This is great for housekeeping and keeping your repo clean, but it doesn't happen magically on your computer. There you have 2 choices :
+
+- you delete your branch manually whenever a PR is merged. It's the cleanest way, but you need some discipline !
+- you have a script which goes through your current branch and delete them base on criteria (which can be precarious sometimes, relying on a commit msg for example)
+
+I prefer the second option as I can automate the process through this script:
+
+```
+git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done
+```
+
+several steps here :
+
+```
+git fetch -p
+```
+remove all the remote reference that no longer exists (making sure your local branch knows that their remote counterpart and reference are gone)
+
+
+```
+&& for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}');
+```
+The `-vv` allow to list the branch with extra information (stand for verbose) - displaying if the branch is `gone`.
+We then rely on grep to get to match to select the branch on `: gone]` and using awk to pass it to the next part of the script
+
+Side Note : this can be fragile, as if the last commit of the branch includes `: gone]` it will delete it.
+
+```
+do git branch -D $branch; done
+```
+delete the corresponding branch
+
+
+Credit to  [stackoverFlow thread](https://stackoverflow.com/a/33548037/6432753)
