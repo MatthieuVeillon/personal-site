@@ -3,10 +3,11 @@ import Header from "./Header";
 import PostHeader from "./PostHeader";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import PostSummary from "./PostSummary";
 
 const BASE_URL = "https://www.matthieuveillon.com";
 
-type LayoutProps = { meta: PostMetaData; content: ReactNode };
+type LayoutProps = { meta: PostMetaData; content: ReactNode; mdxText: string };
 
 export type PostMetaData = {
   title: string;
@@ -15,11 +16,11 @@ export type PostMetaData = {
   readTime: number;
 };
 
-const PostLayout: FC<LayoutProps> = ({ meta, content }) => {
+const PostLayout: FC<LayoutProps> = ({ meta, content, mdxText }) => {
   const { asPath } = useRouter();
   const articleUrl = `${BASE_URL}${asPath}`;
   return (
-    <>
+    <div className="relative">
       <NextSeo
         title={meta.title}
         description={meta?.description || meta.title}
@@ -27,8 +28,9 @@ const PostLayout: FC<LayoutProps> = ({ meta, content }) => {
       />
       <Header />
       <PostHeader meta={meta} />
-      <main className="prose">{content}</main>
-    </>
+      <PostSummary mdxText={mdxText} />
+      <main className="prose col-span-3">{content}</main>
+    </div>
   );
 };
 

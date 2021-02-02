@@ -7,7 +7,7 @@ type SnipetPreviewProps = {
 };
 
 const SnippetPreview: FC<SnipetPreviewProps> = ({ snippet }) => {
-  const asPath = `snippet/${snippet.filePath.replace(/\.mdx?$/, "")}`;
+  const asPath = `/snippet/${snippet.filePath.replace(/\.mdx?$/, "")}`;
   return (
     <li className="p-6 max-w-full rounded-md shadow-md h-30">
       <ContentTitleLink

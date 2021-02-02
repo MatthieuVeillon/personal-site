@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "ts-standard": {
     "project": "path/to/tsconfig.json"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^10.0.3",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.1.0",
@@ -22,11 +25,19 @@
     "postcss": "^8.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "remark-mdx": "^1.6.22",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.29.4",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.3",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
     "standard": "^16.0.3",
     "ts-standard": "^10.0.0",
     "typescript": "^4.1.3"

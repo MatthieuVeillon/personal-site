@@ -6,13 +6,18 @@ import renderToString from "next-mdx-remote/render-to-string";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 import hydrate from "next-mdx-remote/hydrate";
 import PostLayout, { PostMetaData } from "../components/PostLayout";
+import AnchorTitle from "../components/AnchorTitle";
 
-type PostPageProps = { meta: PostMetaData; source: string };
+var mdx = require("@mdx-js/mdx");
+// const remark = require("remark-mdx");
 
-const PostPage: FC<PostPageProps> = ({ meta, source }) => {
-  const content = hydrate(source);
+type PostPageProps = { meta: PostMetaData; source: string; mdxText: string };
+const components = { AnchorTitle };
 
-  return <PostLayout content={content} meta={meta} />;
+const PostPage: FC<PostPageProps> = ({ meta, source, mdxText }) => {
+  const content = hydrate(source, { components });
+
+  return <PostLayout content={content} meta={meta} mdxText={mdxText} />;
 };
 
 export default PostPage;
@@ -23,10 +28,11 @@ export const getStaticProps = async ({ params }) => {
 
   const { content, data: meta } = matter(source);
 
-  const mdxSource = await renderToString(content);
-
+  const mdxSource = await renderToString(content, { components });
+  const mdxText = await mdx(content);
   return {
     props: {
+      mdxText,
       source: mdxSource,
       meta,
     },

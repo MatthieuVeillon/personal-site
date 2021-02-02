@@ -6,7 +6,7 @@ type MyComponentProps = {
   snippets: Snippet[];
 };
 
-const MyComponent: FC<MyComponentProps> = ({ snippets }) => {
+const SnippetSection: FC<MyComponentProps> = ({ snippets }) => {
   return (
     <>
       <h2 className="text-3xl mb-sm">Snippets</h2>
@@ -19,4 +19,4 @@ const MyComponent: FC<MyComponentProps> = ({ snippets }) => {
   );
 };
 
-export default MyComponent;
+export default SnippetSection;
