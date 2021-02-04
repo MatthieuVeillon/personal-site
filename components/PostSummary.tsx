@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { isInViewport } from "../utils/isInViewPort";
+import debounce from "lodash/debounce";
 
 type PostSummaryProps = {
   mdxText: any;
@@ -21,34 +23,73 @@ export const getAnchorTitles = (text: string): AnchorTitle[] => {
   });
 };
 
+/*
+  todo feature / bonus :
+     - selected/active should be colored
+     - should highlight which portion you're on
+
+ */
+
 const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
-  //get the id of all anchorTitles
-
-  /*
-  
-      css constraint
-      should be absolute and sticky which will constraint the last css point (remove globalLayout ?)
-      only appear on tablet or bigger
-      should be sticky
-      always at X px left from content regardless of width of content
-  
-  
-      feature :
-      should highlight which portion you're on
-  
-      * */
-
   const anchorTitles = getAnchorTitles(mdxText);
+  const [loadedDocument, setLoadedDocument] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
+
+  useEffect(() => {
+    setLoadedDocument(document);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentAnchor = anchorTitles.find(({ href }) =>
+        isInViewport(document.getElementById(href))
+      );
+
+      if (currentAnchor) {
+        setCurrentTitle(currentAnchor.href);
+      } else {
+        setCurrentTitle((currentTitle) => currentTitle);
+      }
+    };
+
+    window.addEventListener("scroll", debounce(handleScroll, 300), {
+      passive: true,
+    });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     anchorTitles.length && (
-      <div className="absolute top-20 -left-60 max-w-xs">
-        {anchorTitles.map(({ href, label }) => (
-          <div>
-            <a className="text-gray-500 text-sm" href={`#${href}`}>
-              {label}
-            </a>
-          </div>
-        ))}
+      <div className="sticky top-5">
+        {anchorTitles.map(({ href, label }) => {
+          let onClick = () => false;
+          console.log("currentTitle", currentTitle);
+          console.log("href", href);
+          const isActive = currentTitle === href;
+          if (loadedDocument) {
+            const anchorElement = loadedDocument.getElementById(href);
+            onClick = () =>
+              anchorElement.scrollIntoView({
+                behavior: "smooth",
+                inline: "nearest",
+              });
+          }
+
+          return (
+            <div>
+              <a
+                className={`text-gray-500 text-sm ${
+                  isActive && "text-green-400"
+                }`}
+                onClick={onClick}
+                href="javascript:"
+              >
+                {label}
+              </a>
+            </div>
+          );
+        })}
       </div>
     )
   );

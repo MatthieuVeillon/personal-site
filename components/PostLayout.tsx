@@ -20,17 +20,23 @@ const PostLayout: FC<LayoutProps> = ({ meta, content, mdxText }) => {
   const { asPath } = useRouter();
   const articleUrl = `${BASE_URL}${asPath}`;
   return (
-    <div className="relative">
+    <>
       <NextSeo
         title={meta.title}
         description={meta?.description || meta.title}
         canonical={articleUrl}
       />
       <Header />
-      <PostHeader meta={meta} />
-      <PostSummary mdxText={mdxText} />
-      <main className="prose col-span-3">{content}</main>
-    </div>
+      <div className="container grid grid-cols-4 gap-10 px-5 py-10 max-w-5xl mx-auto">
+        <div className="col-span-1 sm:block hidden">
+          <PostSummary mdxText={mdxText} />
+        </div>
+        <div className="col-span-4 sm:col-span-3">
+          <PostHeader meta={meta} />
+          <main className="prose col-span-3">{content}</main>
+        </div>
+      </div>
+    </>
   );
 };
 

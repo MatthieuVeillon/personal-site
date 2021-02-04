@@ -7,6 +7,7 @@ import BlogSection from "../components/BlogSection";
 import BookSection from "../components/BookSection";
 import SnippetSection from "../components/SnippetSection";
 import { Snippet } from "./snippet/[slug]";
+import Container from "../components/Container";
 
 export type Post = {
   content: string;
@@ -21,12 +22,14 @@ type HomePageProps = {
 
 const HomePage: FC<HomePageProps> = ({ posts, snippets }) => {
   return (
-    <div className="flex flex-col space-y-10">
-      <Intro />
-      <BlogSection posts={posts} />
-      <BookSection />
-      <SnippetSection snippets={snippets} />
-    </div>
+    <Container>
+      <div className="flex flex-col space-y-10">
+        <Intro />
+        <BlogSection posts={posts} />
+        <BookSection />
+        <SnippetSection snippets={snippets} />
+      </div>
+    </Container>
   );
 };
 

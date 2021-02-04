@@ -8,7 +8,7 @@ type HeadPostProps = {
 const PostHeader: FC<HeadPostProps> = ({ meta }) => {
   return (
     <>
-      <h1 className="text-4xl font-semibold mt-md text-green-400 mb-sm">
+      <h1 className="text-4xl font-semibold text-green-400 mb-sm">
         {meta.title}
       </h1>
       <div className="text-gray-500 flex space-x-4 mb-lg">

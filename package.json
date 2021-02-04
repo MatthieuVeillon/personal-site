@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.1.0",
     "gray-matter": "^4.0.2",
+    "lodash": "^4.17.20",
     "next": "^10.0.5",
     "next-mdx-remote": "^2.1.1",
     "next-seo": "^4.17.0",
