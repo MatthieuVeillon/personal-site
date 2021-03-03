@@ -17,7 +17,7 @@ const components = { AnchorTitle, Image };
 
 const PostPage: FC<PostPageProps> = ({ meta, source, mdxText }) => {
   const content = hydrate(source, { components });
-
+  console.log(meta);
   return <PostLayout content={content} meta={meta} mdxText={mdxText} />;
 };
 

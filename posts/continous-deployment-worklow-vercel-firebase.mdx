@@ -2,6 +2,7 @@
 title: Continuous integration and deployment workflow with Vercel, Firebase and CircleCI
 date: 8 fev 2021
 description: A production workflow I use when working on serverless project, the combination of circleCI, Vercel and Firebase are a great way to automate and build confidence into your daily deployment routine
+displaySummary: true
 readTime: 10
 ---
 
@@ -178,7 +179,7 @@ To achieve those goals we have to configure a few things :
 command: echo << parameters.key_env_name >> | base64 -di > ./keys/<< parameters.key_path >>
 ```
 
-- Now your code should be ready to be deployed, but you still need to make sure you have the token to allow your CI to handle the deployment. This can be done with [the firebase token.](https://firebase.google.com/docs/cli) This is done only once - you don't need to do it for each project.
+- Now your code should be ready to be deployed, but you still need to make sure you have the token to allow your CI to handle the deployment. This can be done with [the firebase token.](https://firebase.google.com/docs/cli) This is done only once - you don't need to do it each time you switch the project you're using.
 - From there you should be able to deploy your serverless functions based on your branch like so :
 
 ```bash

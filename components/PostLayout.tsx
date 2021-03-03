@@ -13,6 +13,7 @@ export type PostMetaData = {
   title: string;
   date: Date;
   description: string;
+  displaySummary?: boolean;
   readTime: number;
 };
 

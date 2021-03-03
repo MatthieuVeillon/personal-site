@@ -33,6 +33,7 @@ const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
   const anchorTitles = getAnchorTitles(mdxText);
   const [loadedDocument, setLoadedDocument] = useState(null);
   const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
+  if (anchorTitles.length === 0) return null;
 
   useEffect(() => {
     setLoadedDocument(document);
@@ -74,7 +75,7 @@ const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
           }
 
           return (
-            <div>
+            <div key={label}>
               <a
                 className={`text-gray-500 text-sm ${
                   isActive && "text-green-400"
