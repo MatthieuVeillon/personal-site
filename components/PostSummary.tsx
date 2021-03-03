@@ -31,9 +31,9 @@ export const getAnchorTitles = (text: string): AnchorTitle[] => {
 
 const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
   const anchorTitles = getAnchorTitles(mdxText);
+  if (anchorTitles.length === 0) return null;
   const [loadedDocument, setLoadedDocument] = useState(null);
   const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
-  if (anchorTitles.length === 0) return null;
 
   useEffect(() => {
     setLoadedDocument(document);
