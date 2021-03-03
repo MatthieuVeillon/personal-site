@@ -27,7 +27,6 @@ export const getAnchorTitles = (text: string): AnchorTitle[] => {
   todo feature / bonus :
      - selected/active should be colored
      - should highlight which portion you're on
-
  */
 
 const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
@@ -64,8 +63,6 @@ const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
       <div className="sticky top-5">
         {anchorTitles.map(({ href, label }) => {
           let onClick = () => false;
-          console.log("currentTitle", currentTitle);
-          console.log("href", href);
           const isActive = currentTitle === href;
           if (loadedDocument) {
             const anchorElement = loadedDocument.getElementById(href);

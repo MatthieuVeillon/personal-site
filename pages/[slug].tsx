@@ -7,12 +7,13 @@ import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 import hydrate from "next-mdx-remote/hydrate";
 import PostLayout, { PostMetaData } from "../components/PostLayout";
 import AnchorTitle from "../components/AnchorTitle";
+import Image from "next/image";
 
 var mdx = require("@mdx-js/mdx");
 // const remark = require("remark-mdx");
 
 type PostPageProps = { meta: PostMetaData; source: string; mdxText: string };
-const components = { AnchorTitle };
+const components = { AnchorTitle, Image };
 
 const PostPage: FC<PostPageProps> = ({ meta, source, mdxText }) => {
   const content = hydrate(source, { components });
