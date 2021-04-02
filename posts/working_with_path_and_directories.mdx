@@ -1,0 +1,85 @@
+---
+title: Differences between __dirname, process.cwd, path.join and path.resolve
+date: 31 mar 2021
+readTime: 5
+description: There are different ways to play with path in JS, wanted to make a recap / reminder for myself as I was tired of googling it every time
+---
+
+
+We'll review the different ways I know to handle path and current directory in javascript
+For each example below we'll assume this folder structure :
+
+```
+app
+├── main.js
+└──lib
+   └── script.js
+```
+
+
+### process.cwd()
+
+- returns the directory from which the `node` command has been invoked. It is a global property.
+
+With our structure above, let say we have this code :
+
+
+
+
+```javascript
+// main.js
+// todo check if slash are in right order
+import script from './lib/script.js'
+
+console.log(process.cwd()) // => C:\app
+console.log(__dirname) // => C:\app
+console.log(__dirname===process.cwd()) // => true
+```
+
+```javascript
+// script.js
+console.log(process.cwd()) // => C:\app
+console.log(__dirname) // => C:\app\lib
+console.log(__dirname===process.cwd()) // => false
+```
+
+
+
+
+### __dirname
+
+- returns the directory of current executed source code. It is a module property
+
+### path.join
+
+- path.join returns a normalized path by merging two paths together. It can return an absolute path, but it doesn't necessarily always do so
+
+If no argument is provided, it returns the absolute path to the current directory aka __dirname
+
+### When are they equivalent :
+
+### What they have in common :
+
+- they both take care of normalizing the path if there are too many `/`
+
+```
+console.log(path.join('//ssl')); => "/ssl"
+console.log(path.resolve('//ssl')); => "/ssl"
+```
+
+### When should you use one or the other :
+
+### What if you don't provide arguments :
+
+```
+console.log(path.join()); // => .
+console.log(path.resolve()); // => __dirname
+```
+
+Ressources :
+
+[https://stackoverflow.com/questions/9874382/whats-the-difference-between-process-cwd-vs-dirname](https://stackoverflow.com/questions/9874382/whats-the-difference-between-process-cwd-vs-dirname)
+
+[https://stackoverflow.com/questions/39110801/path-join-vs-path-resolve-with-dirname](https://stackoverflow.com/questions/39110801/path-join-vs-path-resolve-with-dirname)
+
+[https://stackoverflow.com/questions/35048686/whats-the-difference-between-path-resolve-and-path-join](https://stackoverflow.com/questions/35048686/whats-the-difference-between-path-resolve-and-path-join)
