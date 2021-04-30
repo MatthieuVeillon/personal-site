@@ -11,7 +11,7 @@ import Container from "../components/Container";
 
 export type Post = {
   content: string;
-  data: { [p: string]: any };
+  data: { [p: string]: string };
   filePath: string;
 };
 
