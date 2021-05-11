@@ -62,20 +62,19 @@ Output:
 true
 ```
 
+<p>&nbsp;</p>
 
 <AnchorTitle id="path_join_and_path_resolve"> path.join and path.resolve </AnchorTitle>
 
 - **path.join** returns a normalized path by merging two paths together. It can return an absolute path, but it doesn't necessarily always do so
 - **path.resolve** turns a sequence of paths or path segments into an absolute path. Consuming path from right to left and stopping at the first absolute path found
 
-### What they have in common :
+#### What they have in common :
 
 - they both return a path
 - they both take care of normalizing the path.  (resolving the ../ for example or dedupping the /)
 
-### When are they equivalent :
-
-
+#### When are they equivalent :
 
 - When you pass them an absolute path as the only argument
 
@@ -90,7 +89,7 @@ console.log(path.resolve('/ssl')); => "/ssl"
 console.log(path.join(__dirname, some, dir)) === console.log(path.resolve(__dirname, some, dir))
 ```
 
-### What if you don't provide arguments :
+#### What if you don't provide arguments :
 
 Let's assume we use the same folder structure as above with the following `script.js` file
 
@@ -127,24 +126,13 @@ cd app && node lib/script.js
 
 Output:
 ```javascript
-/Users/matt/personal/test-cwd-dirname/app/lib
-/Users/matt/personal/test-cwd-dirname/app/lib
-true
+.
+/Users/matt/personal/test-cwd-dirname/app
 ```
 
+We can see that `path.resolve` when not provided any argument will yield the same result as `process.cwd()`
 
-
-```
-
-```
-
-### When no root argument :
-
-
-
-### Use with __dirname
-
-
+Hope this helped you clarify the main differences of those nice utilities, as it helped me.
 
 Ressources :
 
