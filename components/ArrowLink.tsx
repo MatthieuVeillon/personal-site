@@ -2,17 +2,20 @@ import React, { FC } from "react";
 import Link from "next/link";
 
 interface ArrowLinkProps {
-    as?: string;
-    href: string;
-    label: string;
-    target?: string;
+  as?: string;
+  href: string;
+  label: string;
+  target?: string;
 }
 
 const ArrowLink: FC<ArrowLinkProps> = ({ as, href, label, target }) => {
   return (
     <>
       <Link as={as} href={href}>
-        <a className="text-md text-green-400 flex items-center" target={target}>
+        <a
+          className="text-md text-blue-900 flex items-center group-hover:text-blue-700"
+          target={target}
+        >
           {label}
           &nbsp;
           <svg

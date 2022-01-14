@@ -9,8 +9,7 @@ import PostLayout, { PostMetaData } from "../components/PostLayout";
 import AnchorTitle from "../components/AnchorTitle";
 import Image from "next/image";
 
-var mdx = require("@mdx-js/mdx");
-// const remark = require("remark-mdx");
+const mdx = require("@mdx-js/mdx");
 
 type PostPageProps = { meta: PostMetaData; source: string; mdxText: string };
 const components = { AnchorTitle, Image };

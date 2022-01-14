@@ -30,65 +30,63 @@ export const getAnchorTitles = (text: string): AnchorTitle[] => {
  */
 
 const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
-    const anchorTitles = getAnchorTitles(mdxText);
-    if (anchorTitles.length === 0) return null;
-    const [loadedDocument, setLoadedDocument] = useState(null);
-    const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
+  const anchorTitles = getAnchorTitles(mdxText);
+  if (anchorTitles.length === 0) return null;
+  const [loadedDocument, setLoadedDocument] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
 
-    useEffect(function setDocumentWhenLoaded() {
-      setLoadedDocument(document);
-    }, []);
+  useEffect(function setDocumentWhenLoaded() {
+    setLoadedDocument(document);
+  }, []);
 
-    useEffect(() => {
-      const handleScroll = () => {
-        const currentAnchor = anchorTitles.find(({ href }) => {
-          const element = document.getElementById(href);
-          return element ? isInViewport(element) : null;
-        });
-        if (currentAnchor) {
-          setCurrentTitle(currentAnchor.href);
-        }
-      };
-
-      window.addEventListener("scroll", debounce(handleScroll, 100), {
-        passive: true,
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentAnchor = anchorTitles.find(({ href }) => {
+        const element = document.getElementById(href);
+        return element ? isInViewport(element) : null;
       });
+      if (currentAnchor) {
+        setCurrentTitle(currentAnchor.href);
+      }
+    };
 
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    window.addEventListener("scroll", debounce(handleScroll, 100), {
+      passive: true,
+    });
 
-    return (
-      anchorTitles.length && (
-        <div className="sticky top-5">
-          {anchorTitles.map(({ href, label }) => {
-            let onClick = () => false;
-            const isActive = currentTitle === href;
-            if (loadedDocument) {
-              const anchorElement = loadedDocument.getElementById(href);
-              onClick = () =>
-                anchorElement.scrollIntoView({
-                  behavior: "smooth",
-                  inline: "nearest",
-                });
-            }
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-            return (
-              <div key={label}>
-                <a
-                  className={`text-gray-500 text-sm ${
-                    isActive && "text-green-400"
-                  }`}
-                  onClick={onClick}
-                  href="javascript:"
-                >
-                  {label}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      )
-    );
+  return (
+    anchorTitles.length && (
+      <div className="sticky top-5">
+        {anchorTitles.map(({ href, label }) => {
+          let onClick = () => false;
+          const isActive = currentTitle === href;
+          if (loadedDocument) {
+            const anchorElement = loadedDocument.getElementById(href);
+            onClick = () =>
+              anchorElement.scrollIntoView({
+                behavior: "smooth",
+                inline: "nearest",
+              });
+          }
+
+          return (
+            <div key={label}>
+              <a
+                className={`text-sm ${isActive && "text-blue-700"}`}
+                onClick={onClick}
+                href="javascript:"
+              >
+                {label}
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    )
+  );
 };
 
 export default PostSummary;
