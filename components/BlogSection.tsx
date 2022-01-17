@@ -14,7 +14,7 @@ const BlogSection: FC<BlogSectionProps> = ({ posts }) => {
   );
   return (
     <>
-      <h2 className="text-3xl mb-sm">Blog Posts</h2>
+      <h2 className="text-3xl mb-sm font-Arima">Blog Posts</h2>
       <ul className="mx-auto flex flex-col space-y-2">
         {postsByRecentDates.map((post) => (
           <PostPreview key={post.data.title} post={post} />

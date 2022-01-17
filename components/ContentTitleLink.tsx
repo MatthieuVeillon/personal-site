@@ -15,7 +15,9 @@ const ContentTitleLink: FC<ContentTitleLinkProps> = ({
   return (
     <div className="mb-sm">
       <Link as={asPath} href={href}>
-        <a className="font-semibold text-lg text-green-400">{title}</a>
+        <a className="font-Galdeano text-2xl text-blue-900 group-hover:text-blue-700">
+          {title}
+        </a>
       </Link>
     </div>
   );

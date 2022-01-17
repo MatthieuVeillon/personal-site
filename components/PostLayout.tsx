@@ -34,7 +34,9 @@ const PostLayout: FC<LayoutProps> = ({ meta, content, mdxText }) => {
         </div>
         <div className="col-span-4 sm:col-span-3">
           <PostHeader meta={meta} />
-          <main className="prose col-span-3 pt-10">{content}</main>
+          <main className="prose col-span-3 pt-10 font-Hind max-w-none">
+            {content}
+          </main>
         </div>
       </div>
     </>

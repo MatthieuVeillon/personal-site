@@ -9,8 +9,8 @@ type MyComponentProps = {
 const SnippetSection: FC<MyComponentProps> = ({ snippets }) => {
   return (
     <>
-      <h2 className="text-3xl mb-sm">Snippets</h2>
-      <ul className="mx-auto flex flex-col space-y-2">
+      <h2 className="text-3xl mb-sm font-Arima">Snippets</h2>
+      <ul className="mx-auto flex flex-col space-y-2 group">
         {snippets.map((snippet) => (
           <SnippetPreviews key={snippet.data.title} snippet={snippet} />
         ))}

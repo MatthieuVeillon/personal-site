@@ -1,8 +1,15 @@
 module.exports = {
-  purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
+  purge: ["./pages/**/*.tsx", "./components/**/*.tsx"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: { midnight: "#183e60" },
+      fontFamily: {
+        Arima: ["Arima Madurai"],
+        Galdeano: ["Galdeano"],
+        Hind: ["Hind"],
+      },
+    },
     // https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
     // https://coolors.co/0081a7-00afb9-fdfcdc-fed9b7-f07167
     // textColor: {
@@ -13,17 +20,17 @@ module.exports = {
     //   danger: "#F07167",
     // },
     container: {
-      center: true
+      center: true,
     },
     margin: {
-      sm: '8px',
-      md: '16px',
-      lg: '24px',
-      xl: '48px'
-    }
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+      xl: "48px",
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: [require('@tailwindcss/typography')]
-}
+  plugins: [require("@tailwindcss/typography")],
+};

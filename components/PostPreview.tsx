@@ -11,13 +11,15 @@ const PostPreview: FC<PostPreviewProps> = ({ post }) => {
   const asPath = `/${post.filePath.replace(/\.mdx?$/, "")}`;
 
   return (
-    <li className="p-6 max-w-full rounded-md shadow-md h-30">
+    <li className="p-6 max-w-full rounded-md shadow-md h-30 group hover:cursor-pointer">
       <ContentTitleLink
         asPath={asPath}
         href="/[slug]"
         title={post.data.title}
       />
-      <p>{post.data.description}</p>
+      <p className="font-Hindi group-hover:cursor-pointer">
+        {post.data.description}
+      </p>
       <div className="mt-sm">
         <ArrowLink
           as={`/${post.filePath.replace(/\.mdx?$/, "")}`}

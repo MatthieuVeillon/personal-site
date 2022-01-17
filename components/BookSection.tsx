@@ -7,11 +7,14 @@ type BookSectionProps = {};
 const BookSection: FC<BookSectionProps> = ({}) => {
   return (
     <>
-      <h2 className="text-3xl mb-sm">Books</h2>
-      <div className="p-6 max-w-full rounded-md shadow-md h-30">
+      <h2 className="text-3xl mb-sm font-Arima">Books</h2>
+      <div className="p-6 max-w-full rounded-md shadow-md h-30 group">
         <div className="mb-sm">
           <Link href={`/bookshelf`}>
-            <a className="font-semibold text-lg text-green-400" target="_blank">
+            <a
+              className="font-Galdeano text-2xl text-blue-900 group-hover:text-blue-700"
+              target="_blank"
+            >
               My personal bookshelf
             </a>
           </Link>
