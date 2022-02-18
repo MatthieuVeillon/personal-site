@@ -1,32 +1,27 @@
+import Link from "next/link";
 import React, { FC } from "react";
 import { Post } from "../pages";
-import ArrowLink from "./ArrowLink";
-import ContentTitleLink from "./ContentTitleLink";
+import ArrowLabel from "./ArrowLabel";
+import ContentTitle from "./ContentTitle";
 
 type PostPreviewProps = {
   post: Post;
 };
 
 const PostPreview: FC<PostPreviewProps> = ({ post }) => {
-  const asPath = `/${post.filePath.replace(/\.mdx?$/, "")}`;
+  const href = `/${post.filePath.replace(/\.mdx?$/, "")}`;
 
   return (
     <li className="p-6 max-w-full rounded-md shadow-md h-30 group hover:cursor-pointer">
-      <ContentTitleLink
-        asPath={asPath}
-        href="/[slug]"
-        title={post.data.title}
-      />
-      <p className="font-Hindi group-hover:cursor-pointer">
-        {post.data.description}
-      </p>
-      <div className="mt-sm">
-        <ArrowLink
-          as={`/${post.filePath.replace(/\.mdx?$/, "")}`}
-          href={`/[slug]`}
-          label="read"
-        />
-      </div>
+      <Link href={href}>
+        <a>
+          <ContentTitle title={post.data.title} />
+          <p className="font-Hindi">{post.data.description}</p>
+          <div className="mt-sm">
+            <ArrowLabel label="read" />
+          </div>
+        </a>
+      </Link>
     </li>
   );
 };

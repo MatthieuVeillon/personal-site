@@ -32,7 +32,7 @@ const SnippetPage: FC<SnippetPageProps> = ({ meta, source }) => {
         description={meta?.description || meta.title}
       />
       <Header />
-      <main className="prose">{content}</main>
+      <main className="prose pt-10 container">{content}</main>
     </>
   );
 };

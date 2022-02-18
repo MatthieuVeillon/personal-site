@@ -1,26 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { isInViewport } from "../utils/isInViewPort";
 import debounce from "lodash/debounce";
+import { AnchorTitle } from "./PostLayout";
 
 type PostSummaryProps = {
-  mdxText: any;
-};
-
-type AnchorTitle = {
-  href: string;
-  label: string;
-};
-
-export const getAnchorTitles = (text: string): AnchorTitle[] => {
-  const regex = /(?<=<AnchorTitle)(.*?)(?=<\/AnchorTitle>)/g;
-  return (text.match(regex) || []).map((title) => {
-    const hrefRegex = /(?<=id=")(.*?)(?=")/g;
-    const labelRegex = /(?<=>)(.*)/g;
-    return {
-      href: title.match(hrefRegex)[0],
-      label: title.match(labelRegex)[0],
-    };
-  });
+  anchorTitles: AnchorTitle[];
 };
 
 /*
@@ -29,9 +13,7 @@ export const getAnchorTitles = (text: string): AnchorTitle[] => {
      - should highlight which portion you're on
  */
 
-const PostSummary: FC<PostSummaryProps> = ({ mdxText }) => {
-  const anchorTitles = getAnchorTitles(mdxText);
-  if (anchorTitles.length === 0) return null;
+const PostSummary: FC<PostSummaryProps> = ({ anchorTitles }) => {
   const [loadedDocument, setLoadedDocument] = useState(null);
   const [currentTitle, setCurrentTitle] = useState(anchorTitles[0].href);
 
