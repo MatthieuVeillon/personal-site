@@ -17,9 +17,29 @@ export type PostMetaData = {
   readTime: number;
 };
 
+export type AnchorTitle = {
+  href: string;
+  label: string;
+};
+
+export const getAnchorTitles = (text: string): AnchorTitle[] => {
+  const regex = /(?<=<AnchorTitle)(.*?)(?=<\/AnchorTitle>)/g;
+  return (text.match(regex) || []).map((title) => {
+    const hrefRegex = /(?<=id=")(.*?)(?=")/g;
+    const labelRegex = /(?<=>)(.*)/g;
+    return {
+      href: title.match(hrefRegex)[0],
+      label: title.match(labelRegex)[0],
+    };
+  });
+};
+
 const PostLayout: FC<LayoutProps> = ({ meta, content, mdxText }) => {
   const { asPath } = useRouter();
   const articleUrl = `${BASE_URL}${asPath}`;
+
+  const anchorTitles = getAnchorTitles(mdxText);
+
   return (
     <>
       <NextSeo
@@ -28,15 +48,19 @@ const PostLayout: FC<LayoutProps> = ({ meta, content, mdxText }) => {
         canonical={articleUrl}
       />
       <Header />
-      <div className="container grid grid-cols-4 gap-10 px-5 py-10 max-w-5xl mx-auto">
-        <div className="col-span-1 sm:block hidden">
-          <PostSummary mdxText={mdxText} />
-        </div>
-        <div className="col-span-4 sm:col-span-3">
+      <div
+        className={`container grid grid-cols-4 gap-10 px-5 py-10 max-w-${
+          anchorTitles?.length ? "5" : "3"
+        }xl mx-auto`}
+      >
+        {anchorTitles?.length ? (
+          <div className="col-span-1 sm:block hidden">
+            <PostSummary anchorTitles={anchorTitles} />
+          </div>
+        ) : null}
+        <div className={`col-span-${anchorTitles?.length ? "3" : "4"}`}>
           <PostHeader meta={meta} />
-          <main className="prose col-span-3 pt-10 font-Hind max-w-none">
-            {content}
-          </main>
+          <main className="prose pt-10 font-Hind max-w-none">{content}</main>
         </div>
       </div>
     </>
