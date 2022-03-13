@@ -1,5 +1,15 @@
 module.exports = {
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  purge: {
+    content: [
+      "./pages/**/*.{js,ts,jsx,tsx}",
+      "./components/**/*.{js,ts,jsx,tsx}",
+    ],
+    options: {
+      safelist: {
+        standard: [/^[\w:]*col-start-/, /^[\w:]*col-span-/],
+      },
+    },
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
