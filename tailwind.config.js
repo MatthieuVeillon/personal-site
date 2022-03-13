@@ -6,7 +6,7 @@ module.exports = {
     ],
     options: {
       safelist: {
-        standard: [/^[\w:]*col-start-/, /^[\w:]*col-span-/],
+        standard: [/^[\w:]*col-start-/, /^[\w:]*col-span-/, /^[\w:]*max-w-/],
       },
     },
   },
