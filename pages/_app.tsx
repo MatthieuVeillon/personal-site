@@ -16,10 +16,12 @@ function MyApp({ Component, pageProps }) {
 
             gtag('config', 'UA-222786463-1',{
             page_path: window.location.pathname,
-            });
+          });
           `}
       </Script>
       <Component {...pageProps} />;
     </>
   );
 }
+
+export default MyApp;
