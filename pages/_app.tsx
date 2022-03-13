@@ -14,12 +14,12 @@ function MyApp({ Component, pageProps }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'UA-222786463-1');
+            gtag('config', 'UA-222786463-1',{
+            page_path: window.location.pathname,
+            });
           `}
       </Script>
       <Component {...pageProps} />;
     </>
   );
 }
-
-export default MyApp;
