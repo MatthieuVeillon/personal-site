@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=UA-222786463-1`}
       />
-      <Script id="ga-analytics-universal">
+      <Script id="ga-analytics">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -17,17 +17,10 @@ function MyApp({ Component, pageProps }) {
             gtag('config', 'UA-222786463-1',{
             page_path: window.location.pathname,
           });
+          
+            gtag('config', 'G-YXCH77SDVP');
           `}
       </Script>
-
-        <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=G-YXCH77SDVP"></Script>
-        <Script id="ga-analytics-GA4">
-            {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-YXCH77SDVP');`}
-        </Script>
       <Component {...pageProps} />;
     </>
   );
